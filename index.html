@@ -1,0 +1,3118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Catholic High (Primary) P6 Science NWA2 2025 — Practice</title>
+
+<!-- ============================================================
+     Roboto loaded ONLY for "?" characters via unicode-range,
+     so question marks render cleanly while everything else
+     stays in Century Gothic.
+     ============================================================ -->
+<style>
+  @font-face {
+    font-family: 'RobotoQuestion';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+    unicode-range: U+003F;
+  }
+  @font-face {
+    font-family: 'RobotoQuestion';
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format('woff2');
+    unicode-range: U+003F;
+  }
+</style>
+
+<style>
+  /* =====================================================================
+     SECTION 1 — DESIGN TOKENS
+     Polymath design system, Science (soft blue) accent palette.
+     ===================================================================== */
+  :root {
+    /* Surfaces */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #FAFAFA;
+    --bg-tertiary: #F3F3F0;
+    --bg-soft: #F7F9FC;
+    --border-subtle: #E8E8E4;
+    --border-medium: #D4D4CF;
+    --border-strong: #B8B8B2;
+
+    /* Text */
+    --text-primary: #1A1A1A;
+    --text-secondary: #5C5C5C;
+    --text-tertiary: #8A8A8A;
+    --text-inverse: #FFFFFF;
+
+    /* Science accent (soft blue) */
+    --accent-light: #BBDEFB;
+    --accent-base: #64B5F6;
+    --accent-dark: #42A5F5;
+    --accent-deep: #1E88E5;
+    --accent-bg: #E3F2FD;
+
+    /* Feedback colours */
+    --correct-light: #C8E6C9;
+    --correct-base: #66BB6A;
+    --correct-dark: #43A047;
+    --correct-bg: #F1F8E9;
+    --wrong-light: #FFCDD2;
+    --wrong-base: #EF5350;
+    --wrong-dark: #E53935;
+    --wrong-bg: #FFEBEE;
+
+    /* Shadows */
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-md: 0 2px 4px rgba(0,0,0,0.05), 0 6px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 4px 6px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.1);
+    --shadow-button: 0 1px 2px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-button-hover: 0 2px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.12);
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 40px;
+    --space-2xl: 64px;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 22px;
+    --radius-full: 999px;
+
+    /* Typography */
+    --font-family: 'RobotoQuestion', 'Century Gothic', CenturyGothic, AppleGothic, 'Trebuchet MS', sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 2rem;
+    --font-size-2xl: 2.5rem;
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.75;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.25s ease;
+    --transition-slow: 0.4s ease;
+    --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* =====================================================================
+     SECTION 2 — RESET
+     ===================================================================== */
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    line-height: var(--line-height-normal);
+    min-height: 100vh;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  input, button, select, textarea {
+    font-family: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  /* =====================================================================
+     SECTION 3 — HEADER
+     ===================================================================== */
+  .polymath-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .polymath-logo {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .icon-button {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-button);
+    transition: box-shadow var(--transition-base), transform var(--transition-base), background var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+  }
+
+  .icon-button:hover {
+    box-shadow: var(--shadow-button-hover);
+    transform: translateY(-1px);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+  }
+
+  .icon-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .auth-button {
+    height: 42px;
+    padding: 0 var(--space-md);
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-button);
+    transition: all var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .auth-button:hover {
+    box-shadow: var(--shadow-button-hover);
+    transform: translateY(-1px);
+    color: var(--text-primary);
+  }
+
+  .auth-button .google-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .auth-button .user-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    border: 2px solid var(--accent-light);
+  }
+
+  .admin-badge {
+    background: var(--accent-deep);
+    color: var(--text-inverse);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    padding: 2px var(--space-sm);
+    border-radius: var(--radius-full);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* =====================================================================
+     SECTION 4 — PAGE INTRO
+     ===================================================================== */
+  .page-intro {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+    text-align: center;
+  }
+
+  .page-eyebrow {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--accent-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-md);
+  }
+
+  .page-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+    margin-bottom: var(--space-md);
+    line-height: var(--line-height-tight);
+  }
+
+  .page-subtitle {
+    font-size: var(--font-size-md);
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--space-lg);
+  }
+
+  .meta-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+  }
+
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .meta-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--accent-base);
+  }
+
+  /* =====================================================================
+     SECTION 5 — PROGRESS TRACKER
+     ===================================================================== */
+  .progress-bar-wrapper {
+    max-width: 760px;
+    margin: 0 auto var(--space-xl);
+    padding: 0 var(--space-lg);
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: var(--border-subtle);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-base), var(--accent-deep));
+    width: 0%;
+    transition: width var(--transition-slow);
+    border-radius: var(--radius-full);
+  }
+
+  .progress-label {
+    margin-top: var(--space-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    text-align: center;
+  }
+
+  /* =====================================================================
+     SECTION 6 — QUESTION CARDS
+     ===================================================================== */
+  .questions-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg) var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .booklet-divider {
+    max-width: 800px;
+    margin: var(--space-xl) auto var(--space-md);
+    padding: 0 var(--space-lg);
+    text-align: center;
+  }
+
+  .booklet-divider .divider-eyebrow {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: var(--radius-full);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .booklet-divider .divider-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: var(--space-sm);
+  }
+
+  .booklet-divider .divider-blurb {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .question-card {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardFadeIn 0.6s ease forwards;
+  }
+
+  .question-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .question-card.answered-correct {
+    border-left: 4px solid var(--correct-base);
+  }
+
+  .question-card.answered-wrong {
+    border-left: 4px solid var(--wrong-base);
+  }
+
+  @keyframes cardFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .question-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .question-number {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    font-weight: 700;
+    font-size: var(--font-size-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.02em;
+  }
+
+  .question-stem {
+    flex: 1;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    line-height: var(--line-height-relaxed);
+    padding-top: 8px;
+  }
+
+  .question-stem strong {
+    font-weight: 700;
+  }
+
+  .question-sub {
+    margin-top: var(--space-md);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .marks-tag {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    vertical-align: 2px;
+  }
+
+  .response-section {
+    margin-top: var(--space-md);
+  }
+
+  .response-input {
+    width: 100%;
+    min-height: 130px;
+    padding: var(--space-md);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-soft);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    resize: vertical;
+    transition: border-color var(--transition-base), background var(--transition-base);
+  }
+
+  .response-input:focus {
+    outline: none;
+    border-color: var(--accent-base);
+    background: var(--bg-primary);
+  }
+
+  .response-input:disabled {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    cursor: default;
+  }
+
+  /* =====================================================================
+     SECTION 7 — TABLES
+     ===================================================================== */
+  .data-table-wrapper {
+    margin: var(--space-md) 0 var(--space-lg);
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-primary);
+    font-size: var(--font-size-sm);
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: var(--space-sm) var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+    vertical-align: middle;
+  }
+
+  .data-table th:last-child,
+  .data-table td:last-child {
+    border-right: none;
+  }
+
+  .data-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .data-table thead th {
+    background: var(--bg-tertiary);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: none;
+    letter-spacing: 0.01em;
+  }
+
+  .data-table thead th.spanning-header {
+    text-align: center;
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+  }
+
+  .data-table .center {
+    text-align: center;
+  }
+
+  .data-table .tick {
+    font-size: 1.1rem;
+    color: var(--correct-dark);
+    font-weight: 700;
+  }
+
+  /* =====================================================================
+     SECTION 8 — IMAGE UPLOAD ZONE
+     ===================================================================== */
+  .diagram-section {
+    margin: var(--space-md) 0 var(--space-lg);
+  }
+
+  .diagram-label {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .diagram-label .label-tag {
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+  }
+
+  .image-uploader {
+    position: relative;
+    width: 100%;
+    min-height: 180px;
+    border: 2px dashed var(--border-medium);
+    border-radius: var(--radius-md);
+    background: var(--bg-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--space-sm);
+    color: var(--text-tertiary);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    padding: var(--space-lg);
+    text-align: center;
+  }
+
+  .image-uploader:hover,
+  .image-uploader:focus-within,
+  .image-uploader.drag-over {
+    border-color: var(--accent-base);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+  }
+
+  .image-uploader.drag-over {
+    transform: scale(1.01);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .image-uploader .upload-icon {
+    width: 36px;
+    height: 36px;
+    color: var(--accent-base);
+    transition: transform var(--transition-base);
+  }
+
+  .image-uploader:hover .upload-icon {
+    transform: translateY(-2px);
+  }
+
+  .image-uploader .upload-text {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
+  .image-uploader .upload-hint {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+  }
+
+  .image-uploader.has-image {
+    border-style: solid;
+    border-color: var(--border-subtle);
+    background: var(--bg-primary);
+    padding: 0;
+    cursor: default;
+    min-height: auto;
+  }
+
+  .image-uploader.has-image:hover {
+    background: var(--bg-primary);
+  }
+
+  .uploaded-image {
+    width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    background: #FFFFFF;
+  }
+
+  .upload-hidden-input {
+    display: none;
+  }
+
+  .image-uploader.uploading {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .upload-progress-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    z-index: 5;
+  }
+
+  .upload-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--accent-light);
+    border-top-color: var(--accent-deep);
+    border-radius: var(--radius-full);
+    animation: spin 0.9s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .replace-button {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    box-shadow: var(--shadow-button);
+    transition: all var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 4;
+  }
+
+  .replace-button:hover {
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-button-hover);
+    transform: translateY(-1px);
+  }
+
+  .upload-locked-message {
+    color: var(--text-tertiary);
+    font-size: var(--font-size-sm);
+    font-style: italic;
+    text-align: center;
+    padding: var(--space-lg);
+  }
+
+  /* =====================================================================
+     SECTION 9 — OPTIONS (radio buttons)
+     ===================================================================== */
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin: var(--space-lg) 0;
+  }
+
+  .option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    background: var(--bg-primary);
+    position: relative;
+  }
+
+  .option-item:hover:not(.disabled) {
+    border-color: var(--accent-base);
+    background: var(--accent-bg);
+    transform: translateX(2px);
+  }
+
+  .option-item.selected {
+    border-color: var(--accent-deep);
+    background: var(--accent-bg);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .option-item.disabled {
+    cursor: default;
+  }
+
+  .option-item.correct-answer {
+    border-color: var(--correct-base);
+    background: var(--correct-bg);
+  }
+
+  .option-item.wrong-answer {
+    border-color: var(--wrong-base);
+    background: var(--wrong-bg);
+  }
+
+  .option-radio {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border-medium);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    background: var(--bg-primary);
+    margin-top: 2px;
+  }
+
+  .option-item:hover:not(.disabled) .option-radio {
+    border-color: var(--accent-base);
+  }
+
+  .option-item.selected .option-radio {
+    border-color: var(--accent-deep);
+  }
+
+  .option-item.selected .option-radio::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background: var(--accent-deep);
+  }
+
+  .option-item.correct-answer .option-radio {
+    border-color: var(--correct-base);
+    background: var(--correct-base);
+    color: white;
+  }
+
+  .option-item.correct-answer .option-radio::after {
+    content: '';
+    width: 12px;
+    height: 6px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
+
+  .option-item.wrong-answer .option-radio {
+    border-color: var(--wrong-base);
+    background: var(--wrong-base);
+    color: white;
+  }
+
+  .option-item.wrong-answer .option-radio::after {
+    content: '×';
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .option-label {
+    flex: 1;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    line-height: var(--line-height-normal);
+  }
+
+  .option-marker {
+    font-weight: 700;
+    color: var(--text-tertiary);
+    margin-right: var(--space-sm);
+  }
+
+  .option-item.selected .option-marker,
+  .option-item.correct-answer .option-marker {
+    color: var(--accent-deep);
+  }
+
+  /* =====================================================================
+     SECTION 10 — OPTIONS-AS-TABLE (Q1, Q5, Q7, Q9)
+     ===================================================================== */
+  .options-as-table {
+    margin: var(--space-lg) 0;
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .options-as-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-primary);
+    font-size: var(--font-size-sm);
+  }
+
+  .options-as-table th,
+  .options-as-table td {
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+    border-bottom: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  .options-as-table th:last-child,
+  .options-as-table td:last-child {
+    border-right: none;
+  }
+
+  .options-as-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .options-as-table thead th {
+    background: var(--bg-tertiary);
+    font-weight: 700;
+  }
+
+  .options-as-table tbody tr {
+    cursor: pointer;
+    transition: background var(--transition-base);
+  }
+
+  .options-as-table tbody tr:hover:not(.disabled) {
+    background: var(--accent-bg);
+  }
+
+  .options-as-table tbody tr.selected {
+    background: var(--accent-bg);
+    font-weight: 600;
+  }
+
+  .options-as-table tbody tr.correct-answer {
+    background: var(--correct-bg);
+  }
+
+  .options-as-table tbody tr.wrong-answer {
+    background: var(--wrong-bg);
+  }
+
+  .options-as-table tbody tr.disabled {
+    cursor: default;
+  }
+
+  .options-as-table .option-marker-cell {
+    font-weight: 700;
+    color: var(--text-tertiary);
+    width: 56px;
+    background: var(--bg-soft);
+  }
+
+  /* =====================================================================
+     SECTION 11 — SUBMIT BUTTON & ACTION ROW
+     ===================================================================== */
+  .action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .submit-button {
+    background: var(--accent-deep);
+    color: var(--text-inverse);
+    padding: 12px 28px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    box-shadow: var(--shadow-button);
+    transition: all var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    letter-spacing: 0.02em;
+  }
+
+  .submit-button:hover:not(:disabled) {
+    background: var(--accent-dark);
+    box-shadow: var(--shadow-button-hover);
+    transform: translateY(-1px);
+  }
+
+  .submit-button:active {
+    transform: translateY(0.5px);
+  }
+
+  .submit-button:disabled {
+    background: var(--border-medium);
+    color: var(--text-tertiary);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .submit-button.submitted {
+    background: var(--correct-base);
+    animation: bounceIn 0.5s var(--spring);
+  }
+
+  @keyframes bounceIn {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .reset-button {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    transition: all var(--transition-base);
+    border: 1.5px solid var(--border-subtle);
+  }
+
+  .reset-button:hover {
+    border-color: var(--border-medium);
+    color: var(--text-primary);
+    background: var(--bg-soft);
+  }
+
+  /* =====================================================================
+     SECTION 12 — FEEDBACK / EXPLANATION PANEL
+     ===================================================================== */
+  .feedback-panel {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: var(--bg-soft);
+    border-left: 4px solid var(--accent-base);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-slow), opacity var(--transition-slow), padding var(--transition-slow);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .feedback-panel.visible {
+    opacity: 1;
+    max-height: 2000px;
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .feedback-panel.correct {
+    background: var(--correct-bg);
+    border-left-color: var(--correct-base);
+  }
+
+  .feedback-panel.wrong {
+    background: var(--wrong-bg);
+    border-left-color: var(--wrong-base);
+  }
+
+  .feedback-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .feedback-icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feedback-icon-circle.correct {
+    background: var(--correct-base);
+  }
+
+  .feedback-icon-circle.wrong {
+    background: var(--wrong-base);
+  }
+
+  .feedback-icon-circle svg {
+    width: 22px;
+    height: 22px;
+    color: white;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawCheck 0.6s ease forwards;
+    animation-delay: 0.15s;
+  }
+
+  @keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .feedback-title {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .feedback-title.correct {
+    color: var(--correct-dark);
+  }
+
+  .feedback-title.wrong {
+    color: var(--wrong-dark);
+  }
+
+  .feedback-answer-line {
+    margin-bottom: var(--space-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .feedback-answer-line .answer-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: var(--accent-deep);
+    color: var(--text-inverse);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    margin-left: var(--space-sm);
+  }
+
+  .explanation-heading {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .explanation-body {
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .explanation-body p {
+    margin-bottom: var(--space-sm);
+  }
+
+  .explanation-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .explanation-body strong {
+    color: var(--accent-deep);
+    font-weight: 700;
+  }
+
+  .explanation-body ul,
+  .explanation-body ol {
+    margin: var(--space-sm) 0;
+    padding-left: var(--space-lg);
+  }
+
+  .explanation-body li {
+    margin-bottom: 4px;
+  }
+
+  /* Shake animation for wrong */
+  .question-card.shake {
+    animation: gentleShake 0.4s ease;
+  }
+
+  @keyframes gentleShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+
+  /* =====================================================================
+     SECTION 13 — SCORE SUMMARY
+     ===================================================================== */
+  .score-summary {
+    max-width: 800px;
+    margin: var(--space-2xl) auto;
+    padding: var(--space-xl);
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+    margin-left: var(--space-lg);
+    margin-right: var(--space-lg);
+  }
+
+  .score-summary.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .score-summary-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .score-summary-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+  }
+
+  .score-display {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--accent-deep);
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.02em;
+  }
+
+  .score-display .score-divider {
+    color: var(--text-tertiary);
+    font-weight: 400;
+    margin: 0 8px;
+  }
+
+  .score-display .score-total {
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+
+  .score-message {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    line-height: var(--line-height-normal);
+  }
+
+  /* =====================================================================
+     SECTION 14 — TOAST NOTIFICATIONS
+     ===================================================================== */
+  .toast-container {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .toast {
+    background: var(--text-primary);
+    color: var(--text-inverse);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transform: translateX(20px);
+    animation: toastIn 0.3s ease forwards;
+    max-width: 360px;
+  }
+
+  .toast.error {
+    background: var(--wrong-dark);
+  }
+
+  .toast.success {
+    background: var(--correct-dark);
+  }
+
+  @keyframes toastIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .toast.fading {
+    animation: toastOut 0.3s ease forwards;
+  }
+
+  @keyframes toastOut {
+    to {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+  }
+
+  /* =====================================================================
+     SECTION 15 — FOOTER
+     ===================================================================== */
+  .page-footer {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+    color: var(--text-tertiary);
+    font-size: var(--font-size-xs);
+    border-top: 1px solid var(--border-subtle);
+    margin-top: var(--space-2xl);
+  }
+
+  /* =====================================================================
+     SECTION 16 — RESPONSIVE
+     ===================================================================== */
+  @media (max-width: 600px) {
+    .page-title {
+      font-size: 1.5rem;
+    }
+
+    .question-card {
+      padding: var(--space-lg);
+    }
+
+    .question-number {
+      width: 36px;
+      height: 36px;
+      font-size: var(--font-size-base);
+    }
+
+    .auth-button .button-text {
+      display: none;
+    }
+
+    .options-as-table table {
+      font-size: var(--font-size-xs);
+    }
+
+    .options-as-table th,
+    .options-as-table td {
+      padding: 6px 8px;
+    }
+
+    .action-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .submit-button,
+    .reset-button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .score-display {
+      font-size: 3rem;
+    }
+  }
+
+  /* =====================================================================
+     SECTION 17 — PRINT STYLES (A4)
+     ===================================================================== */
+  @media print {
+    @page {
+      size: A4;
+      margin: 15mm 18mm;
+    }
+
+    body {
+      background: white;
+      color: black;
+    }
+
+    .polymath-header {
+      position: static;
+      border-bottom: 2px solid #000;
+      padding: 8px 0;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .header-actions,
+    .icon-button,
+    .auth-button,
+    .submit-button,
+    .reset-button,
+    .replace-button,
+    .toast-container,
+    .upload-progress-overlay,
+    .progress-bar-wrapper {
+      display: none !important;
+    }
+
+    .polymath-logo {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      height: 50px;
+    }
+
+    .page-intro {
+      padding: 16px 0;
+    }
+
+    .questions-container {
+      padding: 0;
+      gap: 16px;
+    }
+
+    .question-card {
+      box-shadow: none;
+      border: 1px solid #ccc;
+      page-break-inside: avoid;
+      padding: 16px;
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .data-table-wrapper,
+    .options-as-table {
+      box-shadow: none;
+    }
+
+    .image-uploader {
+      border: 1px solid #ccc;
+      background: white;
+      min-height: auto;
+    }
+
+    .image-uploader:not(.has-image) {
+      display: none;
+    }
+
+    .image-uploader.has-image {
+      page-break-inside: avoid;
+    }
+
+    .uploaded-image {
+      max-height: 240px;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .feedback-panel {
+      page-break-inside: avoid;
+      max-height: none !important;
+      opacity: 1 !important;
+      padding: 12px !important;
+    }
+
+    .feedback-panel:not(.visible) {
+      display: none;
+    }
+
+    .option-item.correct-answer {
+      background: #fff !important;
+      border: 2px solid #000;
+    }
+
+    .option-item {
+      padding: 8px;
+    }
+
+    .score-summary {
+      page-break-inside: avoid;
+      box-shadow: none;
+      border: 1px solid #ccc;
+    }
+
+    .page-footer {
+      border-top: 1px solid #ccc;
+      padding: 12px 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     HEADER: Polymath logo, sign-in button, print button
+     ===================================================================== -->
+<header class="polymath-header">
+  <img
+    src="https://dl.dropboxusercontent.com/scl/fi/h40yjlyg8ldefwfaa3dib/polymath-logo-sticker.png?rlkey=o1ra4taqy79gt9t8u096v82zj"
+    alt="Polymath Learning Centre"
+    class="polymath-logo" />
+
+  <div class="header-actions">
+    <button id="authButton" class="auth-button" type="button">
+      <svg class="google-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+        <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+        <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+        <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+      </svg>
+      <span class="button-text">Sign in with Google</span>
+    </button>
+
+    <button id="printButton" class="icon-button" type="button" title="Print">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- =====================================================================
+     PAGE INTRO
+     ===================================================================== -->
+<section class="page-intro">
+  <div class="page-eyebrow">Catholic High (Primary) · Primary 6 · Science</div>
+  <h1 class="page-title">Non-Weighted Assessment 2 (2025)</h1>
+  <p class="page-subtitle">
+    Booklet A — 10 multiple-choice questions. Booklet B — 3 structured questions.
+    Read each question carefully, pick or write your answer, and submit to see the
+    explanation.
+  </p>
+  <div class="meta-row">
+    <span class="meta-pill"><span class="dot"></span>10 MCQ + 3 structured</span>
+    <span class="meta-pill"><span class="dot"></span>30 marks</span>
+    <span class="meta-pill"><span class="dot"></span>6 May 2025</span>
+  </div>
+</section>
+
+<!-- =====================================================================
+     PROGRESS BAR
+     ===================================================================== -->
+<div class="progress-bar-wrapper">
+  <div class="progress-bar">
+    <div id="progressFill" class="progress-fill"></div>
+  </div>
+  <div id="progressLabel" class="progress-label">0 of 10 answered</div>
+</div>
+
+<!-- =====================================================================
+     QUESTIONS CONTAINER (rendered by JS)
+     ===================================================================== -->
+<main id="questionsContainer" class="questions-container"></main>
+
+<!-- =====================================================================
+     SCORE SUMMARY (rendered by JS once all answered)
+     ===================================================================== -->
+<section id="scoreSummary" class="score-summary" style="display:none;">
+  <div class="score-summary-title">All done!</div>
+  <div class="score-summary-subtitle">Here's how you did across the 10 MCQ questions in Booklet A.</div>
+  <div class="score-display">
+    <span id="scoreCorrect">0</span><span class="score-divider">/</span><span class="score-total">10</span>
+  </div>
+  <div id="scoreMessage" class="score-message"></div>
+  <button id="restartButton" class="submit-button" type="button">
+    Try Again
+  </button>
+</section>
+
+<!-- =====================================================================
+     TOAST CONTAINER
+     ===================================================================== -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- =====================================================================
+     FOOTER
+     ===================================================================== -->
+<footer class="page-footer">
+  Polymath Learning Centre · Catholic High (Primary) P6 Science Non-Weighted Assessment 2 · 2025
+</footer>
+
+
+<!-- =====================================================================
+     FIREBASE SDKs
+     ===================================================================== -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+<script>
+/* =========================================================================
+   SECTION 1 — FIREBASE INITIALISATION
+   ========================================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyAUSI3Uh28IeqASEp0JhH4QPaVt-O3meBo",
+  authDomain: "mathgen--app.firebaseapp.com",
+  projectId: "mathgen--app",
+  storageBucket: "mathgen--app.firebasestorage.app",
+  messagingSenderId: "165654161198",
+  appId: "1:165654161198:web:16c8bd60eb3a2aa7edbcbf",
+  measurementId: "G-0MWZFG211D"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
+
+const ADMIN_EMAIL = "chungzhikai@gmail.com";
+const APP_DOC_PATH = "apps/chs_p6_science_nwa2_2025";
+const STORAGE_PREFIX = "chs_p6_science_nwa2_2025";
+
+let currentUser = null;
+let isAdmin = false;
+let imageUrls = {};            // q1 -> "https://...", etc.
+
+/* =========================================================================
+   SECTION 2 — QUESTIONS DATA
+   Word-for-word from the Catholic High (Primary) P6 Non-Weighted Assessment 2
+   2025 PDF. Booklet A = Q1–Q10 (MCQ, 2 marks each). Booklet B = Q11–Q13
+   (open-ended, structured).
+   ========================================================================= */
+const questions = [
+
+  /* ============================================================
+     BOOKLET A — Q1 to Q10 — MCQ, 2 marks each
+     ============================================================ */
+
+  /* ---------------- Q1 — water cycle ---------------- */
+  {
+    id: 1,
+    booklet: "A",
+    stem: "The diagram represents the water cycle.",
+    needsDiagram: true,
+    diagramKey: "q1",
+    diagramLabel: "Water cycle diagram (cloud, rain, sea water, water vapour, points A, B and C)",
+    subStem: "What of the following is correct?",
+    optionsType: "table",
+    optionsTableHeaders: ["Condensation occurred at", "Evaporation occurred at"],
+    options: [
+      { marker: "(1)", cells: ["B", "A"] },
+      { marker: "(2)", cells: ["B", "C"] },
+      { marker: "(3)", cells: ["C", "A"] },
+      { marker: "(4)", cells: ["C", "B"] }
+    ],
+    correctIndex: 0,
+    explanation: `
+      <p>In the water cycle:</p>
+      <ul>
+        <li><strong>Evaporation</strong> happens when liquid <strong>sea water</strong> turns into <strong>water vapour</strong>. The arrow that goes from sea water up to water vapour is at <strong>A</strong>.</li>
+        <li><strong>Condensation</strong> happens when <strong>water vapour</strong> turns into tiny water droplets that form <strong>clouds</strong>. The arrow that goes from water vapour up to cloud is at <strong>B</strong>.</li>
+        <li>The arrow at C (cloud → rain) shows precipitation, not condensation or evaporation.</li>
+      </ul>
+      <p>So condensation occurred at <strong>B</strong> and evaporation occurred at <strong>A</strong>, which is option (1).</p>
+    `
+  },
+
+  /* ---------------- Q2 — set-ups J and K (condensation) ---------------- */
+  {
+    id: 2,
+    booklet: "A",
+    stem: "Set-ups J and K were placed on a table. They contained equal amounts of water at 70 °C and equal number of ice cubes as shown. The beaker in set-up K was narrower.",
+    needsDiagram: true,
+    diagramKey: "q2",
+    diagramLabel: "Set-up J (wider beaker) and set-up K (narrower beaker) with ice cubes on top",
+    afterDiagramStem: "After a while, more water droplets formed in set-up J.",
+    subStem: "Which statement explains this observation?",
+    optionsType: "list",
+    options: [
+      { marker: "(1)", text: "More water evaporated because the water was warmer." },
+      { marker: "(2)", text: "More water condensed because the ice cubes were colder." },
+      { marker: "(3)", text: "More water evaporated because the exposed surface area of water was larger." },
+      { marker: "(4)", text: "More water vapour condensed because there was less air movement in the beaker." }
+    ],
+    correctIndex: 2,
+    explanation: `
+      <p>Both set-ups have the <strong>same amount of water at the same starting temperature (70 °C)</strong> and the <strong>same number of ice cubes</strong>. The only difference is that set-up J has a <strong>wider beaker</strong> while K is narrower.</p>
+      <p>A wider beaker means a <strong>larger exposed surface area</strong> of water. With a larger exposed surface area, more water <strong>evaporates</strong> per unit time, producing more water vapour inside the beaker.</p>
+      <p>This water vapour then meets the cold underside of the surface (cooled by the ice cubes) and <strong>condenses</strong> into water droplets. So set-up J — with the larger surface area — produces more water droplets.</p>
+      <p>The correct answer is option <strong>(3)</strong>.</p>
+      <p>Why not the others? (1) only explains evaporation, not why <em>more</em> droplets form in J vs K — both started at the same temperature. (2) the ice cubes are equally cold in both. (4) air movement isn't the variable that differs here.</p>
+    `
+  },
+
+  /* ---------------- Q3 — Rashida's evaporation table ---------------- */
+  {
+    id: 3,
+    booklet: "A",
+    stem: "Rashida conducted an experiment using four set-ups with beakers each containing an equal volume of water at the start of the experiment. At the end of the experiment, she recorded her results as shown.",
+    rashidaTable: {
+      headers: ["Set-up", "Exposed surface area of beaker (cm²)", "Windy", "Location", "Volume of water left in beaker (ml)"],
+      rows: [
+        ["W", "70",  "yes", "open field", "160"],
+        ["X", "100", "yes", "under a tree", "165"],
+        ["Y", "70",  "no",  "under a tree", "170"],
+        ["Z", "100", "yes", "open field", "150"]
+      ]
+    },
+    subStem: 'Which two set-ups support the hypothesis, "the greater the exposed surface area of the water, the lesser the volume of water left in the beaker"?',
+    optionsType: "list",
+    options: [
+      { marker: "(1)", text: "W and Y" },
+      { marker: "(2)", text: "W and Z" },
+      { marker: "(3)", text: "X and Y" },
+      { marker: "(4)", text: "X and Z" }
+    ],
+    correctIndex: 1,
+    explanation: `
+      <p>To test how <strong>exposed surface area</strong> affects water left, we need to find two set-ups where:</p>
+      <ul>
+        <li>The <strong>exposed surface area is different</strong> (the changed variable).</li>
+        <li><strong>All other variables are the same</strong> — same windy condition, same location.</li>
+      </ul>
+      <p>Let's check each pair:</p>
+      <ul>
+        <li><strong>W vs Z</strong> — both <em>windy: yes</em>, both <em>open field</em>. Surface area: 70 cm² vs 100 cm². Water left: 160 ml vs 150 ml. ✓ Larger surface area → less water left. <strong>Fair test, supports the hypothesis.</strong></li>
+        <li>W vs Y — same surface area (70), but windy and location differ. ✗</li>
+        <li>X vs Y — surface area differs, but windy condition differs too. ✗</li>
+        <li>X vs Z — same surface area (100), so doesn't test the hypothesis. ✗</li>
+      </ul>
+      <p>The correct answer is <strong>W and Z</strong>, which is option (2).</p>
+    `
+  },
+
+  /* ---------------- Q4 — Which is NOT an effect of a force? ---------------- */
+  {
+    id: 4,
+    booklet: "A",
+    stem: "Which of the following is <strong>not</strong> an effect of a force?",
+    optionsType: "list",
+    options: [
+      { marker: "(1)", text: "a pump inflating a balloon" },
+      { marker: "(2)", text: "a mirror reflecting an image" },
+      { marker: "(3)", text: "a boy kicking a soccer ball coming towards him" },
+      { marker: "(4)", text: "a piece of paper being folded into an aeroplane" }
+    ],
+    correctIndex: 1,
+    explanation: `
+      <p>A force can:</p>
+      <ul>
+        <li>Change the <strong>shape or size</strong> of an object.</li>
+        <li>Change the <strong>direction</strong> in which an object is moving.</li>
+        <li>Make a <strong>stationary object move</strong>, or change its <strong>speed</strong>.</li>
+        <li><strong>Stop</strong> a moving object.</li>
+      </ul>
+      <p>Let's check each option:</p>
+      <ul>
+        <li><strong>(1)</strong> A pump inflating a balloon — the air force changes the <strong>shape and size</strong> of the balloon. This <em>is</em> an effect of a force.</li>
+        <li><strong>(2)</strong> A mirror reflecting an image — this is about <strong>light reflection</strong>, not a force. No force changes the mirror or the image. <strong>This is the answer.</strong></li>
+        <li><strong>(3)</strong> A boy kicking a ball coming towards him — the kick (push force) <strong>changes the direction</strong> of the ball. This <em>is</em> an effect of a force.</li>
+        <li><strong>(4)</strong> Folding paper into an aeroplane — the folding force <strong>changes the shape</strong> of the paper. This <em>is</em> an effect of a force.</li>
+      </ul>
+      <p>So the answer is option <strong>(2)</strong>.</p>
+    `
+  },
+
+  /* ---------------- Q5 — Compressed spring sliding block (forces) ---------------- */
+  {
+    id: 5,
+    booklet: "A",
+    stem: "In the set-up, a compressed spring was used to push a block. The block would then slide along the tabletop before stopping.",
+    needsDiagram: true,
+    diagramKey: "q5",
+    diagramLabel: "Compressed spring pushing a block along a tabletop until it stops",
+    subStem: "Which force(s) acted on the sliding block?",
+    optionsType: "table",
+    optionsTableHeaders: ["Elastic spring force", "Gravitational force", "Frictional force"],
+    options: [
+      { marker: "(1)", cells: ["yes", "yes", "yes"] },
+      { marker: "(2)", cells: ["yes", "no",  "yes"] },
+      { marker: "(3)", cells: ["no",  "yes", "no"]  },
+      { marker: "(4)", cells: ["no",  "yes", "yes"] }
+    ],
+    correctIndex: 3,
+    explanation: `
+      <p>Read carefully — the question asks about forces acting on the block <strong>while it is sliding</strong> (after the spring has pushed it).</p>
+      <ul>
+        <li><strong>Elastic spring force:</strong> The spring only pushed the block at the start. Once the block has left contact with the spring and is sliding on its own, the spring is <strong>no longer touching the block</strong>, so the elastic spring force is <strong>NO</strong>.</li>
+        <li><strong>Gravitational force:</strong> Gravity always acts on objects on Earth, pulling them down. <strong>YES</strong>.</li>
+        <li><strong>Frictional force:</strong> The sliding block is in contact with the tabletop. Friction between the block and the tabletop acts opposite to the motion — it is what eventually slows the block down and stops it. <strong>YES</strong>.</li>
+      </ul>
+      <p>So: no, yes, yes — option <strong>(4)</strong>.</p>
+    `
+  },
+
+  /* ---------------- Q6 — Spring platform / load / contacts circuit ---------------- */
+  {
+    id: 6,
+    booklet: "A",
+    stem: "In the set-up, the bulb will light up if the load has a mass of 15 kg or more.",
+    needsDiagram: true,
+    diagramKey: "q6",
+    diagramLabel: "Set-up: load on a platform supported by springs, with contacts that close a circuit when pressed down enough",
+    afterDiagramStem: "How can the set-up be changed so that the bulb will light up if the load has a mass of 12 kg?",
+    optionsType: "list",
+    options: [
+      { marker: "(1)", text: "increase the length of the contacts" },
+      { marker: "(2)", text: "use longer springs of the same type" },
+      { marker: "(3)", text: "use stronger springs of the same length" },
+      { marker: "(4)", text: "increase the thickness of platform but of the same mass" }
+    ],
+    correctIndex: 0,
+    explanation: `
+      <p>The bulb lights up only when the platform sinks enough for the two contacts to <strong>touch each other</strong> and complete the circuit. With the original springs, this needs a load of 15 kg.</p>
+      <p>We want the contacts to touch with a <strong>smaller load (12 kg)</strong>. That means we need either: (a) the springs to compress more easily for the same load, or (b) the contacts to start out closer together.</p>
+      <ul>
+        <li><strong>(1) Increase the length of the contacts:</strong> Longer contacts mean the gap between them is smaller. They will now touch even with a smaller compression of the springs — i.e. with a smaller load like 12 kg. ✓</li>
+        <li><strong>(2) Use longer springs of the same type:</strong> "Same type" means same stiffness. Longer springs would actually <em>raise</em> the platform higher, making the gap between contacts <strong>larger</strong> — needing more load, not less. ✗</li>
+        <li><strong>(3) Use stronger springs of the same length:</strong> Stronger springs are <strong>harder</strong> to compress, so an even larger load would be needed. ✗</li>
+        <li><strong>(4) Thicker platform, same mass:</strong> A thicker platform takes up the gap, but the question is asking about the bulb lighting at <em>lighter</em> loads — and platform thickness doesn't change how much the springs compress for a given load. The springs still need 15 kg of compression. ✗</li>
+      </ul>
+      <p>The correct answer is option <strong>(1)</strong>.</p>
+    `
+  },
+
+  /* ---------------- Q7 — Meiling's car/magnet experiment ---------------- */
+  {
+    id: 7,
+    booklet: "A",
+    stem: "Meiling set up an experiment as shown. When she pushed the car from X, it moved down the ramp and stopped at point Y.",
+    needsDiagram: true,
+    diagramKey: "q7_setup1",
+    diagramLabel: "Set-up 1: car (with magnet) at X, slides down ramp and stops at Y",
+    afterDiagramStem: "She repeated the experiment with object G placed near Y. She pushed the car from X with the same force and it moved down the ramp, and then rolled backwards before stopping at Z. The car did not touch object G.",
+    needsSecondDiagram: true,
+    secondDiagramKey: "q7_setup2",
+    secondDiagramLabel: "Set-up 2: car with magnet, then ramp, then point Z, point Y, and object G",
+    afterSecondDiagramStem: "She replaced object G with object H and pushed the car from X with the same force. The car moved towards object H at a faster speed, made contact with it and stopped.",
+    needsThirdDiagram: true,
+    thirdDiagramKey: "q7_setup3",
+    thirdDiagramLabel: "Set-up 3: car with magnet, ramp, point Z, point Y, and object H",
+    subStem: "What could objects G and H possibly be?",
+    optionsType: "table",
+    optionsTableHeaders: ["G", "H"],
+    options: [
+      { marker: "(1)", cells: ["copper block", "magnet"] },
+      { marker: "(2)", cells: ["magnet",       "iron block"] },
+      { marker: "(3)", cells: ["iron block",   "glass block"] },
+      { marker: "(4)", cells: ["magnet",       "copper block"] }
+    ],
+    correctIndex: 1,
+    explanation: `
+      <p>The key clue: the car has a <strong>magnet</strong> on it. Magnets <strong>attract magnetic materials</strong> (iron, steel, nickel, cobalt and other magnets) and can also <strong>repel another magnet</strong> when like poles face each other.</p>
+      <p><strong>Object G</strong> caused the car to roll <em>backwards</em> and stop at Z, even though they did not touch. Something pushed the car back without touching it. That's a <strong>repulsion</strong> — and only a <strong>magnet</strong> can repel another magnet at a distance. So <strong>G is a magnet</strong> (with like poles facing the car's magnet).</p>
+      <p><strong>Object H</strong> caused the car to move <em>faster</em> towards it and make contact. Something pulled the car forward — that's an <strong>attraction</strong>. A magnet attracts magnetic materials such as <strong>iron</strong>. So <strong>H is an iron block</strong>.</p>
+      <p>Checking the options: G = magnet, H = iron block matches option <strong>(2)</strong>.</p>
+      <p>Why not the others? (1) Copper is not magnetic — it can't repel the car. (3) An iron block would attract, not repel — and a glass block is not magnetic. (4) Copper is not magnetic — H wouldn't be attracted.</p>
+    `
+  },
+
+  /* ---------------- Q8 — Hock Siang's hovering ping pong ball ---------------- */
+  {
+    id: 8,
+    booklet: "A",
+    stem: "Hock Siang placed a ping pong ball on a mouthpiece as shown. He then blew into the mouthpiece and observed the ball hovering in mid-air for a short period of time.",
+    needsDiagram: true,
+    diagramKey: "q8",
+    diagramLabel: "Mouthpiece with ping pong ball: before (no air blown) and after (air blown — ball hovers)",
+    listItems: [
+      "<strong>A:</strong> The force exerted by the moving air was greater than the weight of the ball.",
+      "<strong>B:</strong> The warm air exhaled from the mouth heated the air up and cause the ball to rise.",
+      "<strong>C:</strong> The gravitational force acting on the ball was greater than the force exerted by the moving air."
+    ],
+    subStem: "Which statement(s) explained why the ball was able to hover in mid-air?",
+    optionsType: "list",
+    options: [
+      { marker: "(1)", text: "A only" },
+      { marker: "(2)", text: "A and B only" },
+      { marker: "(3)", text: "B and C only" },
+      { marker: "(4)", text: "A, B and C" }
+    ],
+    correctIndex: 0,
+    explanation: `
+      <p>Let's check each statement:</p>
+      <ul>
+        <li><strong>A: True.</strong> When Hock Siang blows into the mouthpiece, the moving air exerts an <strong>upward force</strong> on the ball. For the ball to lift off the mouthpiece and hover in mid-air, this upward force from the moving air must be <strong>greater than the weight</strong> (gravitational force) of the ball. ✓</li>
+        <li><strong>B: False.</strong> The hovering is caused by the moving air, not by warming. The exhaled air may be slightly warmer, but that's not what makes the ball hover — the airflow doing work against gravity is.</li>
+        <li><strong>C: False.</strong> If gravitational force on the ball were greater than the force from the moving air, the ball would fall down — not hover. The opposite of what we observe.</li>
+      </ul>
+      <p>Only statement <strong>A</strong> correctly explains the observation, so the answer is option <strong>(1)</strong>.</p>
+    `
+  },
+
+  /* ---------------- Q9 — Organism L (dark and moist environment) ---------------- */
+  {
+    id: 9,
+    booklet: "A",
+    stem: "A scientist conducted a study and observed that organism L prefers a dark and moist environment. The table shows two physical characteristics, X and Y, and the habitats that organisms live in.",
+    organismTable: {
+      headers: ["Habitat", "Characteristic X", "Characteristic Y"],
+      rows: [
+        ["field",  "high", "high"],
+        ["desert", "low",  "high"],
+        ["M",      "low",  "low"],
+        ["N",      "high", "low"]
+      ]
+    },
+    subStem: "What habitat does organism L live in and what are the characteristics of X and Y?",
+    optionsType: "table",
+    optionsTableHeaders: ["Habitat of L", "Characteristic X", "Characteristic Y"],
+    options: [
+      { marker: "(1)", cells: ["M", "temperature",              "amount of light"] },
+      { marker: "(2)", cells: ["N", "temperature",              "amount of light"] },
+      { marker: "(3)", cells: ["M", "amount of water in the soil", "temperature"] },
+      { marker: "(4)", cells: ["N", "amount of water in the soil", "amount of light"] }
+    ],
+    correctIndex: 3,
+    explanation: `
+      <p>Organism L prefers <strong>dark</strong> (= low light) and <strong>moist</strong> (= lots of water) conditions. Use the known habitats to figure out what X and Y stand for:</p>
+      <ul>
+        <li><strong>Field:</strong> usually moist soil ⇒ "high" water; sunlit ⇒ "high" light.</li>
+        <li><strong>Desert:</strong> dry ⇒ "low" water; very sunny ⇒ "high" light.</li>
+      </ul>
+      <p>For both habitats, the column matching <strong>"high in field, low in desert"</strong> must be <strong>amount of water in the soil</strong> — that's <strong>Characteristic X</strong>. The column "high in field, high in desert" must be <strong>amount of light</strong> — that's <strong>Characteristic Y</strong>.</p>
+      <p>Now find L's habitat. L wants moist (high water, X = high) and dark (low light, Y = low). Looking at the table:</p>
+      <ul>
+        <li>M: low water, low light — too dry for L. ✗</li>
+        <li>N: <strong>high water, low light</strong> — moist and dark, exactly what L prefers. ✓</li>
+      </ul>
+      <p>So L lives in habitat <strong>N</strong>; X is amount of water in the soil; Y is amount of light. That matches option <strong>(4)</strong>.</p>
+    `
+  },
+
+  /* ---------------- Q10 — Tree supports organisms (community / habitat / population) ---------------- */
+  {
+    id: 10,
+    booklet: "A",
+    stem: "A tree supports only the organisms shown.",
+    needsDiagram: true,
+    diagramKey: "q10",
+    diagramLabel: "Tree with bird, squirrel, ant, lizard living on it",
+    subStem: "Which of the following is correct?",
+    optionsType: "list",
+    options: [
+      { marker: "(1)", text: "The squirrels form a community." },
+      { marker: "(2)", text: "The tree is a habitat for the organisms." },
+      { marker: "(3)", text: "The birds and the tree form one community." },
+      { marker: "(4)", text: "There are four populations of organisms in the habitat." }
+    ],
+    correctIndex: 1,
+    explanation: `
+      <p>Recall the key terms:</p>
+      <ul>
+        <li><strong>Population</strong> — all the organisms of the <em>same kind</em> living together in a habitat.</li>
+        <li><strong>Community</strong> — all the <em>different populations</em> of organisms (more than one kind) living and interacting in the same habitat.</li>
+        <li><strong>Habitat</strong> — the <em>place</em> where organisms live.</li>
+      </ul>
+      <p>Now check each option:</p>
+      <ul>
+        <li><strong>(1) The squirrels form a community.</strong> ✗ The squirrels are all the same kind, so they form a <em>population</em>, not a community.</li>
+        <li><strong>(2) The tree is a habitat for the organisms.</strong> ✓ The bird, squirrel, ant and lizard all live on the tree — the tree is the <em>place</em> they live in, i.e. the habitat. <strong>Correct.</strong></li>
+        <li><strong>(3) The birds and the tree form one community.</strong> ✗ A community is made up of different <em>populations of organisms</em>. The tree is part of the habitat / it is a population on its own; pairing one population (birds) with the tree alone is not a community.</li>
+        <li><strong>(4) There are four populations of organisms in the habitat.</strong> ✗ The tree itself is also a population (a plant). So including the tree, there are <em>five</em> populations: tree, birds, squirrels, ants and lizards.</li>
+      </ul>
+      <p>The correct answer is option <strong>(2)</strong>.</p>
+    `
+  },
+
+
+  /* ============================================================
+     BOOKLET B — Q11 to Q13 — Open-ended structured (10 marks)
+     ============================================================ */
+
+  /* ---------------- Q11 — Boiling + Melvin's pot at 80 °C ---------------- */
+  {
+    id: 11,
+    booklet: "B",
+    openEnded: true,
+    stem: '<strong>(a)</strong> State what boiling means. <span class="marks-tag">[1]</span>',
+    hasResponseInput: true,
+    responsePlaceholder: "Type your definition of boiling here…",
+    additionalParts: [
+      {
+        text: "Melvin wanted to cook some eggs at 80 °C. When the water boiled, he removed the pot from the stove and placed it on a metal tabletop. He added some cold water before putting in some eggs. He covered the pot for 12 minutes."
+      },
+      {
+        needsDiagram: true,
+        diagramKey: "q11_pot",
+        diagramLabel: "Melvin's pot of water at 80 °C on a metal tabletop, with eggs inside, covered with a lid, and a temperature sensor attached to a data logger"
+      },
+      {
+        text: '<strong>(b)</strong> Without reheating the pot, suggest two ways that Melvin can do to ensure that the water was kept at about 80 °C in the same pot. <span class="marks-tag">[2]</span><br><br><strong>(i) To reduce heat loss from the water:</strong>',
+        hasResponseInput: true,
+        responsePlaceholder: "Type your answer for (i) — how to reduce heat loss…"
+      },
+      {
+        text: '<strong>(ii) To supply heat to the water:</strong>',
+        hasResponseInput: true,
+        responsePlaceholder: "Type your answer for (ii) — how to supply heat…"
+      }
+    ],
+    modelAnswer: `
+      <p><strong>(a)</strong> Boiling is the change in state of a substance from <strong>liquid to gas</strong> at a <strong>fixed temperature</strong> (called the boiling point), where the change happens throughout the liquid.</p>
+      <p><em>Marker's note:</em> Always include the change in state (liquid → gas) <em>and</em> the words "fixed temperature". Do not just repeat the word "boiling" in your definition — that is not a definition.</p>
+      <p><strong>(b)(i) To reduce heat loss from the water:</strong> Cover the outside of the pot with a poor conductor of heat (for example, wrap it in a thick cloth or place it on a wooden tabletop instead of the metal one). A poor conductor of heat slows down the transfer of heat from the hot water to the cooler surroundings, so the water loses heat more slowly and stays at about 80 °C for longer.</p>
+      <p><strong>(b)(ii) To supply heat to the water:</strong> Add more water at 80 °C / add more boiling water to the pot. The added hot water transfers heat to the cooler water in the pot, so the temperature of the water in the pot is kept at about 80 °C.</p>
+      <p><em>Marker's note:</em> Avoid vague words like "hot water" — 45 °C also feels hot. Always state a specific temperature so that the answer is precise.</p>
+    `
+  },
+
+  /* ---------------- Q12 — Keith's wooden block on ramp + anti-slip tape ---------------- */
+  {
+    id: 12,
+    booklet: "B",
+    openEnded: true,
+    stem: "Keith placed a wooden block on a ramp as shown.",
+    needsDiagram: true,
+    diagramKey: "q12_ramp",
+    diagramLabel: "Wooden block on a ramp; angle X is the angle between the ramp and the floor",
+    afterDiagramStem: "When angle X was 5°, the block did not slide down the ramp. He gradually increased angle X by making the ramp steeper until the block first began to slide. He recorded angle X when this happened. He conducted the experiment using ramps made of two other different surfaces. The results of the experiment are as shown.",
+    needsSecondDiagram: false,
+    keithTable: {
+      headers: ["Type of surface", "Angle X (°)"],
+      rows: [
+        ["rubber",  "45"],
+        ["wood",    "30"],
+        ["plastic", "20"]
+      ]
+    },
+    subStem: '<strong>(a)</strong> When angle X was 5°, the block did not slide down the ramp. Explain why. <span class="marks-tag">[1]</span>',
+    hasResponseInput: true,
+    responsePlaceholder: "Type your explanation for part (a) here…",
+    additionalParts: [
+      {
+        text: '<strong>(b)</strong> Explain why angle X was smaller for the plastic surface as compared to the wooden surface. <span class="marks-tag">[1]</span>',
+        hasResponseInput: true,
+        responsePlaceholder: "Type your explanation for part (b) here…"
+      },
+      {
+        text: "The picture shows a staircase with anti-slip tapes pasted to the steps to help prevent slipping while walking down.",
+        needsDiagram: true,
+        diagramKey: "q12_staircase",
+        diagramLabel: "Staircase with anti-slip tapes pasted to the steps"
+      },
+      {
+        text: '<strong>(c)</strong> Based on the results, which material is most suitable for making the anti-slip tape? Explain why. <span class="marks-tag">[2]</span>',
+        hasResponseInput: true,
+        responsePlaceholder: "Type your choice and your explanation for part (c) here…"
+      }
+    ],
+    modelAnswer: `
+      <p><strong>(a)</strong> When angle X was 5°, the <strong>frictional force</strong> between the wooden block and the surface of the ramp was <strong>greater than</strong> the component of the <strong>gravitational force</strong> pulling the block down the ramp. Because the friction was strong enough to balance the pull of gravity along the slope, the block did not slide.</p>
+      <p><em>Marker's note:</em> The command word is "explain why". Always identify <em>cause</em> (frictional force is greater than gravitational pull along the slope) and link it to the <em>effect</em> (the block stayed still).</p>
+      <p><strong>(b)</strong> The plastic surface was <strong>smoother</strong> than the wooden surface. A smoother surface produces <strong>less frictional force</strong> between the wooden block and the ramp, so a <strong>smaller angle</strong> X (less steepness) was already enough for the gravitational pull along the slope to overcome the frictional force and start the block sliding.</p>
+      <p><em>Marker's note:</em> Cause (smoother → less friction) and effect (smaller angle X needed). Do not just say "plastic is more slippery" — link it to friction.</p>
+      <p><strong>(c) Material:</strong> <strong>rubber</strong>. <strong>Explanation (using the results table):</strong> Angle X was the <strong>largest at 45°</strong> when the wooden block slid down on the rubber surface, which is greater than for wood (30°) and plastic (20°). This means the rubber surface produces the <strong>greatest amount of friction</strong> between the surface and the wooden block. So when used as anti-slip tape, the rubber will produce the greatest amount of friction between the tape and the soles of people's shoes/feet, making it the least likely for them to slip.</p>
+      <p><em>Marker's note:</em> A good "Explain your choice" answer has three parts:</p>
+      <ol>
+        <li><strong>Choice</strong> — pick a single material.</li>
+        <li><strong>Evidence from the results table</strong> — quote the angle X value and compare with the others.</li>
+        <li><strong>Reasoning that links to the context</strong> — explain why this property (most friction) is exactly what anti-slip tape needs.</li>
+      </ol>
+    `
+  },
+
+  /* ---------------- Q13 — Aloysius cloth + lamp/fan experiment ---------------- */
+  {
+    id: 13,
+    booklet: "B",
+    openEnded: true,
+    stem: "Aloysius conducted an experiment using the set-ups as shown. He added the same amount of water onto four similar cloths, W, X, Y and Z.",
+    needsDiagram: true,
+    diagramKey: "q13_setups",
+    diagramLabel: "Set-ups: lamp 30 cm from cloth W, lamp 70 cm from cloth X, fan 30 cm from cloth Y, fan 70 cm from cloth Z",
+    afterDiagramStem: "The graph shows the mass of each cloth over a period of time.",
+    needsSecondDiagram: true,
+    secondDiagramKey: "q13_graph",
+    secondDiagramLabel: "Mass of cloth (g) vs Time (min) graph showing four lines: W decreases the most steeply, then X, then Y, then Z (least steep)",
+    subStem: '<strong>(a)</strong> Based on the graph, explain how the different distances of the lamp from the cloth affect the mass of the cloth. <span class="marks-tag">[2]</span>',
+    hasResponseInput: true,
+    responsePlaceholder: "Type your explanation for part (a) here…",
+    additionalParts: [
+      {
+        text: '<strong>(b)</strong> Based on the graph, which variable, light or wind, has a smaller effect on the mass of the cloth? Give a reason. <span class="marks-tag">[1]</span>',
+        hasResponseInput: true,
+        responsePlaceholder: "Name the variable and give your reason here…"
+      }
+    ],
+    modelAnswer: `
+      <p><strong>(a)</strong> Compare the two cloths affected by the lamp — that is, cloth W (lamp 30 cm away) and cloth X (lamp 70 cm away).</p>
+      <p>The <strong>further the lamp is from the cloth</strong>, the <strong>lower the temperature of the surroundings</strong> around the cloth (less heat from the lamp reaches the cloth). The <strong>rate of evaporation</strong> of the water from the cloth therefore <strong>decreases</strong>. So less water evaporates from the cloth in the same time, and the <strong>mass of the cloth is greater</strong>.</p>
+      <p>From the graph, this matches the result: cloth W (lamp 30 cm, hotter) decreases more in mass than cloth X (lamp 70 cm, cooler) within the same period of time.</p>
+      <p><em>Marker's note:</em> The command word is "explain how". Identify the concept (rate of evaporation), then link the cause (distance → temperature) to the effect (rate of evaporation → mass of cloth).</p>
+      <p><strong>(b)</strong> The variable that has the <strong>smaller effect</strong> on the mass of the cloth is <strong>wind</strong>.</p>
+      <p><strong>Reason:</strong> To compare fairly, keep all other variables the same except the variable being tested. Compare set-up <strong>W and Y</strong> (both at 30 cm — one with lamp, one with fan) <em>or</em> set-up <strong>X and Z</strong> (both at 70 cm — one with lamp, one with fan).</p>
+      <p>From the graph, cloth W has a <strong>greater change in mass</strong> than cloth Y within the same period of time. (Or equivalently: cloth X has a greater change in mass than cloth Z.) Since the cloths exposed to the fan (Y and Z) lost less mass than those exposed to the lamp (W and X), <strong>wind</strong> had a smaller effect on the mass of the cloth than light did.</p>
+      <p><em>Marker's note:</em> The command word is "give a reason" (not "explain"). State which variable, then justify by comparing the right pair of set-ups from the graph. Always compare set-ups that differ only in the variable you are testing.</p>
+    `
+  }
+];
+
+/* =========================================================================
+   SECTION 3 — RENDER QUESTIONS
+   ========================================================================= */
+const questionsContainer = document.getElementById('questionsContainer');
+
+function renderAllQuestions() {
+  questionsContainer.innerHTML = '';
+
+  let currentBooklet = null;
+
+  questions.forEach((q, index) => {
+    // Insert booklet divider when the booklet changes
+    if (q.booklet && q.booklet !== currentBooklet) {
+      currentBooklet = q.booklet;
+      const divider = renderBookletDivider(currentBooklet);
+      questionsContainer.appendChild(divider);
+    }
+
+    const card = renderQuestionCard(q, index);
+    questionsContainer.appendChild(card);
+  });
+}
+
+function renderBookletDivider(booklet) {
+  const div = document.createElement('div');
+  div.className = 'booklet-divider';
+
+  if (booklet === "A") {
+    div.innerHTML = `
+      <span class="divider-eyebrow">Booklet A</span>
+      <div class="divider-title">10 multiple-choice questions · 20 marks</div>
+      <div class="divider-blurb">For each question, four options are given. One of them is the correct answer. Choose 1, 2, 3 or 4.</div>
+    `;
+  } else if (booklet === "B") {
+    div.innerHTML = `
+      <span class="divider-eyebrow">Booklet B</span>
+      <div class="divider-title">3 structured questions · 10 marks</div>
+      <div class="divider-blurb">Write your answers for questions 11 to 13. The number of marks is shown in brackets [ ] at the end of each question or part question.</div>
+    `;
+  }
+
+  return div;
+}
+
+function renderQuestionCard(q, index) {
+  const card = document.createElement('article');
+  card.className = 'question-card';
+  card.id = `question-card-${q.id}`;
+  card.style.animationDelay = `${index * 70}ms`;
+
+  // ---------------- Header (number + stem) ----------------
+  const header = document.createElement('div');
+  header.className = 'question-header';
+
+  const numberBadge = document.createElement('div');
+  numberBadge.className = 'question-number';
+  numberBadge.textContent = q.id;
+  header.appendChild(numberBadge);
+
+  const stem = document.createElement('div');
+  stem.className = 'question-stem';
+  stem.innerHTML = q.stem;
+  header.appendChild(stem);
+
+  card.appendChild(header);
+
+  // ---------------- Rashida-style data table (Q3) ----------------
+  if (q.rashidaTable) {
+    card.appendChild(renderGenericDataTable(q.rashidaTable));
+  }
+
+  // ---------------- Organism habitat table (Q9) ----------------
+  if (q.organismTable) {
+    card.appendChild(renderGenericDataTable(q.organismTable));
+  }
+
+  // ---------------- Keith's surfaces table (Q12) ----------------
+  if (q.keithTable) {
+    // Render later, after first diagram + after-diagram stem
+  }
+
+  // ---------------- First diagram ----------------
+  if (q.needsDiagram) {
+    card.appendChild(renderDiagramSection(q.diagramKey, q.diagramLabel));
+  }
+
+  // ---------------- After-diagram stem ----------------
+  if (q.afterDiagramStem) {
+    const subStem = document.createElement('div');
+    subStem.className = 'question-sub';
+    subStem.innerHTML = q.afterDiagramStem;
+    card.appendChild(subStem);
+  }
+
+  // Keith's surfaces table after the after-diagram-stem
+  if (q.keithTable) {
+    card.appendChild(renderGenericDataTable(q.keithTable));
+  }
+
+  // ---------------- Second diagram (Q7 setup 2, Q13 graph) ----------------
+  if (q.needsSecondDiagram) {
+    card.appendChild(renderDiagramSection(q.secondDiagramKey, q.secondDiagramLabel));
+  }
+
+  // ---------------- After-second-diagram stem (Q7) ----------------
+  if (q.afterSecondDiagramStem) {
+    const subStem = document.createElement('div');
+    subStem.className = 'question-sub';
+    subStem.innerHTML = q.afterSecondDiagramStem;
+    card.appendChild(subStem);
+  }
+
+  // ---------------- Third diagram (Q7 setup 3) ----------------
+  if (q.needsThirdDiagram) {
+    card.appendChild(renderDiagramSection(q.thirdDiagramKey, q.thirdDiagramLabel));
+  }
+
+  // ---------------- List items inline (Q8 statements A/B/C) ----------------
+  if (q.listItems) {
+    const listBox = document.createElement('div');
+    listBox.style.cssText = 'background: var(--bg-soft); border-radius: var(--radius-md); padding: var(--space-md) var(--space-lg); margin: var(--space-md) 0; line-height: var(--line-height-relaxed); border: 1px solid var(--border-subtle);';
+    listBox.innerHTML = q.listItems.map(li => `<div style="margin-bottom: 8px;">${li}</div>`).join('');
+    card.appendChild(listBox);
+  }
+
+  // ---------------- Sub-stem (the actual MCQ question, or part (a) for open-ended) ----------------
+  if (q.subStem) {
+    const subStem = document.createElement('div');
+    subStem.className = 'question-sub';
+    subStem.innerHTML = q.subStem;
+    card.appendChild(subStem);
+  }
+
+  // ---------------- Open-ended response input + show-answer action ----------------
+  if (q.openEnded) {
+    if (q.hasResponseInput) {
+      const responseSection = document.createElement('div');
+      responseSection.className = 'response-section';
+      const textarea = document.createElement('textarea');
+      textarea.className = 'response-input';
+      textarea.id = `response-${q.id}-part1`;
+      textarea.placeholder = q.responsePlaceholder || 'Write your answer here…';
+      textarea.rows = 5;
+      responseSection.appendChild(textarea);
+      card.appendChild(responseSection);
+    }
+
+    if (q.additionalParts) {
+      q.additionalParts.forEach((part, idx) => {
+        if (part.text) {
+          const partStem = document.createElement('div');
+          partStem.className = 'question-sub';
+          partStem.innerHTML = part.text;
+          card.appendChild(partStem);
+        }
+
+        if (part.needsDiagram) {
+          card.appendChild(renderDiagramSection(part.diagramKey, part.diagramLabel));
+        }
+
+        if (part.dataTable) {
+          card.appendChild(renderGenericDataTable(part.dataTable));
+        }
+
+        if (part.hasResponseInput) {
+          const responseSection = document.createElement('div');
+          responseSection.className = 'response-section';
+          const textarea = document.createElement('textarea');
+          textarea.className = 'response-input';
+          textarea.id = `response-${q.id}-part${idx + 2}`;
+          textarea.placeholder = part.responsePlaceholder || 'Write your answer here…';
+          textarea.rows = 4;
+          responseSection.appendChild(textarea);
+          card.appendChild(responseSection);
+        }
+      });
+    }
+
+    const actionRow = document.createElement('div');
+    actionRow.className = 'action-row';
+
+    const showAnswerButton = document.createElement('button');
+    showAnswerButton.className = 'submit-button';
+    showAnswerButton.id = `submit-${q.id}`;
+    showAnswerButton.innerHTML = `
+      <span>Show suggested answer</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+    `;
+    showAnswerButton.addEventListener('click', () => handleShowAnswer(q.id));
+    actionRow.appendChild(showAnswerButton);
+
+    const resetButton = document.createElement('button');
+    resetButton.className = 'reset-button';
+    resetButton.id = `reset-${q.id}`;
+    resetButton.textContent = 'Hide answer';
+    resetButton.style.display = 'none';
+    resetButton.addEventListener('click', () => handleReset(q.id));
+    actionRow.appendChild(resetButton);
+
+    card.appendChild(actionRow);
+
+    const feedback = document.createElement('div');
+    feedback.className = 'feedback-panel';
+    feedback.id = `feedback-${q.id}`;
+    card.appendChild(feedback);
+
+    return card;
+  }
+
+  // ---------------- Options (MCQ) ----------------
+  if (q.optionsType === 'table') {
+    card.appendChild(renderOptionsAsTable(q));
+  } else {
+    card.appendChild(renderOptionsList(q));
+  }
+
+  // ---------------- Action row (Submit + Reset) ----------------
+  const actionRow = document.createElement('div');
+  actionRow.className = 'action-row';
+
+  const submitButton = document.createElement('button');
+  submitButton.className = 'submit-button';
+  submitButton.id = `submit-${q.id}`;
+  submitButton.disabled = true;
+  submitButton.innerHTML = `
+    <span>Submit answer</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  `;
+  submitButton.addEventListener('click', () => handleSubmit(q.id));
+  actionRow.appendChild(submitButton);
+
+  const resetButton = document.createElement('button');
+  resetButton.className = 'reset-button';
+  resetButton.id = `reset-${q.id}`;
+  resetButton.textContent = 'Reset';
+  resetButton.style.display = 'none';
+  resetButton.addEventListener('click', () => handleReset(q.id));
+  actionRow.appendChild(resetButton);
+
+  card.appendChild(actionRow);
+
+  // ---------------- Feedback panel (hidden by default) ----------------
+  const feedback = document.createElement('div');
+  feedback.className = 'feedback-panel';
+  feedback.id = `feedback-${q.id}`;
+  card.appendChild(feedback);
+
+  return card;
+}
+
+/* =========================================================================
+   SECTION 4 — RENDER HELPERS (tables, options, diagrams)
+   ========================================================================= */
+
+function renderGenericDataTable(tableData) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'data-table-wrapper';
+  wrapper.style.marginTop = 'var(--space-sm)';
+
+  const table = document.createElement('table');
+  table.className = 'data-table';
+
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  tableData.headers.forEach(h => {
+    const th = document.createElement('th');
+    th.textContent = h;
+    th.className = 'center';
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  tableData.rows.forEach(row => {
+    const tr = document.createElement('tr');
+    row.forEach((cell, idx) => {
+      const td = document.createElement('td');
+      td.className = 'center';
+      if (idx === 0) {
+        td.style.fontWeight = '700';
+      }
+      td.textContent = cell;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  wrapper.appendChild(table);
+  return wrapper;
+}
+
+function renderOptionsList(q) {
+  const list = document.createElement('div');
+  list.className = 'options-list';
+  list.id = `options-${q.id}`;
+
+  q.options.forEach((opt, idx) => {
+    const item = document.createElement('div');
+    item.className = 'option-item';
+    item.dataset.questionId = q.id;
+    item.dataset.optionIndex = idx;
+
+    const radio = document.createElement('div');
+    radio.className = 'option-radio';
+    item.appendChild(radio);
+
+    const label = document.createElement('div');
+    label.className = 'option-label';
+    label.innerHTML = `<span class="option-marker">${opt.marker}</span>${opt.text}`;
+    item.appendChild(label);
+
+    item.addEventListener('click', () => handleOptionSelect(q.id, idx));
+    list.appendChild(item);
+  });
+
+  return list;
+}
+
+function renderOptionsAsTable(q) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'options-as-table';
+  wrapper.id = `options-${q.id}`;
+
+  const table = document.createElement('table');
+
+  // Header
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  const blankTh = document.createElement('th');
+  headerRow.appendChild(blankTh);
+  q.optionsTableHeaders.forEach(h => {
+    const th = document.createElement('th');
+    th.textContent = h;
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Body — each row is a clickable option
+  const tbody = document.createElement('tbody');
+  q.options.forEach((opt, idx) => {
+    const tr = document.createElement('tr');
+    tr.dataset.questionId = q.id;
+    tr.dataset.optionIndex = idx;
+
+    const markerTd = document.createElement('td');
+    markerTd.className = 'option-marker-cell';
+    markerTd.textContent = opt.marker;
+    tr.appendChild(markerTd);
+
+    opt.cells.forEach(cell => {
+      const td = document.createElement('td');
+      td.textContent = cell;
+      tr.appendChild(td);
+    });
+
+    tr.addEventListener('click', () => handleOptionSelect(q.id, idx));
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  wrapper.appendChild(table);
+  return wrapper;
+}
+
+/* =========================================================================
+   SECTION 5 — DIAGRAM SECTION (image upload zone)
+   ========================================================================= */
+
+function renderDiagramSection(diagramKey, label) {
+  const section = document.createElement('div');
+  section.className = 'diagram-section';
+
+  const labelEl = document.createElement('div');
+  labelEl.className = 'diagram-label';
+  labelEl.innerHTML = `<span class="label-tag">Diagram</span> ${label}`;
+  section.appendChild(labelEl);
+
+  const uploader = renderImageUploader(diagramKey, label);
+  section.appendChild(uploader);
+
+  return section;
+}
+
+function renderImageUploader(diagramKey, label) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'image-uploader';
+  wrapper.id = `uploader-${diagramKey}`;
+  wrapper.tabIndex = 0;
+  wrapper.setAttribute('role', 'button');
+  wrapper.setAttribute('aria-label', `Upload image for ${label}`);
+
+  // The empty-state UI
+  const emptyState = document.createElement('div');
+  emptyState.className = 'uploader-empty-state';
+  emptyState.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: var(--space-sm);';
+  emptyState.innerHTML = `
+    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="17 8 12 3 7 8"></polyline>
+      <line x1="12" y1="3" x2="12" y2="15"></line>
+    </svg>
+    <div class="upload-text">Drop an image, click to browse, or paste (Ctrl+V)</div>
+    <div class="upload-hint">${label}</div>
+  `;
+  wrapper.appendChild(emptyState);
+
+  // Hidden file input
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = 'image/*';
+  fileInput.className = 'upload-hidden-input';
+  fileInput.id = `file-input-${diagramKey}`;
+  wrapper.appendChild(fileInput);
+
+  // Event handlers
+  wrapper.addEventListener('click', (e) => {
+    if (wrapper.classList.contains('has-image')) return;
+    if (!isAdmin) {
+      showToast('Sign in as admin to upload diagrams.', 'error');
+      return;
+    }
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) handleFileUpload(file, diagramKey);
+  });
+
+  wrapper.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    if (!isAdmin) return;
+    if (wrapper.classList.contains('has-image')) return;
+    wrapper.classList.add('drag-over');
+  });
+
+  wrapper.addEventListener('dragleave', () => {
+    wrapper.classList.remove('drag-over');
+  });
+
+  wrapper.addEventListener('drop', (e) => {
+    e.preventDefault();
+    wrapper.classList.remove('drag-over');
+    if (!isAdmin) {
+      showToast('Sign in as admin to upload diagrams.', 'error');
+      return;
+    }
+    if (wrapper.classList.contains('has-image')) return;
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+      handleFileUpload(file, diagramKey);
+    }
+  });
+
+  // Paste handler — works when the uploader is focused or hovered.
+  wrapper.addEventListener('paste', (e) => {
+    if (!isAdmin) return;
+    handlePasteEvent(e, diagramKey);
+  });
+
+  return wrapper;
+}
+
+function handlePasteEvent(e, diagramKey) {
+  const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+  for (const item of items) {
+    if (item.type.indexOf('image') !== -1) {
+      const file = item.getAsFile();
+      if (file) {
+        e.preventDefault();
+        handleFileUpload(file, diagramKey);
+        return;
+      }
+    }
+  }
+}
+
+/* Global paste listener too — paste anywhere with last-hovered uploader */
+let lastHoveredUploader = null;
+document.addEventListener('mouseover', (e) => {
+  const uploader = e.target.closest('.image-uploader');
+  if (uploader) lastHoveredUploader = uploader;
+});
+document.addEventListener('paste', (e) => {
+  if (!isAdmin) return;
+  if (lastHoveredUploader && !lastHoveredUploader.classList.contains('has-image')) {
+    const diagramKey = lastHoveredUploader.id.replace('uploader-', '');
+    handlePasteEvent(e, diagramKey);
+  }
+});
+
+/* =========================================================================
+   SECTION 6 — FILE UPLOAD TO FIREBASE STORAGE + FIRESTORE
+   ========================================================================= */
+
+async function handleFileUpload(file, diagramKey) {
+  if (!isAdmin) {
+    showToast('Only the admin can upload diagrams.', 'error');
+    return;
+  }
+
+  if (!file.type.startsWith('image/')) {
+    showToast('Please select an image file.', 'error');
+    return;
+  }
+
+  // 5MB max
+  if (file.size > 5 * 1024 * 1024) {
+    showToast('Image is too large (max 5MB).', 'error');
+    return;
+  }
+
+  const uploader = document.getElementById(`uploader-${diagramKey}`);
+  if (!uploader) return;
+
+  uploader.classList.add('uploading');
+
+  // Add a progress overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'upload-progress-overlay';
+  overlay.innerHTML = '<div class="upload-spinner"></div>';
+  uploader.appendChild(overlay);
+
+  try {
+    const ext = file.name.split('.').pop().toLowerCase() || 'png';
+    const storagePath = `${STORAGE_PREFIX}/${diagramKey}_${Date.now()}.${ext}`;
+    const storageRef = storage.ref(storagePath);
+
+    const snapshot = await storageRef.put(file, {
+      contentType: file.type,
+      customMetadata: {
+        uploadedBy: currentUser ? currentUser.email : 'unknown',
+        diagramKey: diagramKey
+      }
+    });
+
+    const downloadUrl = await snapshot.ref.getDownloadURL();
+
+    // Save URL to Firestore
+    await db.doc(APP_DOC_PATH).set({
+      images: {
+        [diagramKey]: {
+          url: downloadUrl,
+          uploadedAt: firebase.firestore.FieldValue.serverTimestamp(),
+          uploadedBy: currentUser.email,
+          storagePath: storagePath
+        }
+      }
+    }, { merge: true });
+
+    imageUrls[diagramKey] = downloadUrl;
+    displayUploadedImage(diagramKey, downloadUrl);
+    showToast(`Diagram uploaded for "${diagramKey}"`, 'success');
+  } catch (err) {
+    console.error('Upload failed:', err);
+    showToast('Upload failed: ' + err.message, 'error');
+  } finally {
+    uploader.classList.remove('uploading');
+    if (overlay.parentNode) overlay.remove();
+  }
+}
+
+function displayUploadedImage(diagramKey, url) {
+  const uploader = document.getElementById(`uploader-${diagramKey}`);
+  if (!uploader) return;
+
+  uploader.classList.add('has-image');
+  uploader.classList.remove('drag-over');
+
+  // Clear and rebuild content
+  uploader.innerHTML = '';
+
+  const img = document.createElement('img');
+  img.className = 'uploaded-image';
+  img.src = url;
+  img.alt = 'Uploaded diagram';
+  uploader.appendChild(img);
+
+  if (isAdmin) {
+    const replaceBtn = document.createElement('button');
+    replaceBtn.className = 'replace-button';
+    replaceBtn.type = 'button';
+    replaceBtn.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <polyline points="1 20 1 14 7 14"></polyline>
+        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+      </svg>
+      Replace
+    `;
+    replaceBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      replaceImage(diagramKey);
+    });
+    uploader.appendChild(replaceBtn);
+  }
+}
+
+function replaceImage(diagramKey) {
+  if (!isAdmin) return;
+  const uploader = document.getElementById(`uploader-${diagramKey}`);
+  if (!uploader) return;
+
+  // Find the original label for this diagram by searching all questions/parts
+  let label = 'Diagram';
+  for (const q of questions) {
+    if (q.diagramKey === diagramKey) label = q.diagramLabel;
+    if (q.secondDiagramKey === diagramKey) label = q.secondDiagramLabel;
+    if (q.thirdDiagramKey === diagramKey) label = q.thirdDiagramLabel;
+    if (q.additionalParts) {
+      for (const part of q.additionalParts) {
+        if (part.diagramKey === diagramKey) label = part.diagramLabel;
+      }
+    }
+  }
+
+  // Reset uploader to empty state
+  uploader.classList.remove('has-image');
+  uploader.innerHTML = '';
+
+  const emptyState = document.createElement('div');
+  emptyState.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: var(--space-sm);';
+  emptyState.innerHTML = `
+    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="17 8 12 3 7 8"></polyline>
+      <line x1="12" y1="3" x2="12" y2="15"></line>
+    </svg>
+    <div class="upload-text">Drop an image, click to browse, or paste (Ctrl+V)</div>
+    <div class="upload-hint">${label}</div>
+  `;
+  uploader.appendChild(emptyState);
+
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = 'image/*';
+  fileInput.className = 'upload-hidden-input';
+  fileInput.id = `file-input-${diagramKey}`;
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) handleFileUpload(file, diagramKey);
+  });
+  uploader.appendChild(fileInput);
+
+  // Re-attach click listener
+  uploader.onclick = () => {
+    if (uploader.classList.contains('has-image')) return;
+    if (!isAdmin) {
+      showToast('Sign in as admin to upload diagrams.', 'error');
+      return;
+    }
+    fileInput.click();
+  };
+}
+
+/* =========================================================================
+   SECTION 7 — LOAD EXISTING IMAGE URLs FROM FIRESTORE ON STARTUP
+   ========================================================================= */
+
+async function loadStoredImages() {
+  try {
+    const docSnap = await db.doc(APP_DOC_PATH).get();
+    if (!docSnap.exists) return;
+    const data = docSnap.data();
+    if (!data.images) return;
+
+    Object.keys(data.images).forEach(diagramKey => {
+      const entry = data.images[diagramKey];
+      if (entry && entry.url) {
+        imageUrls[diagramKey] = entry.url;
+        displayUploadedImage(diagramKey, entry.url);
+      }
+    });
+  } catch (err) {
+    console.error('Failed to load stored images:', err);
+  }
+}
+
+/* =========================================================================
+   SECTION 8 — OPTION SELECTION + SUBMIT
+   ========================================================================= */
+const userAnswers = {};      // questionId -> selectedIndex
+const submittedAnswers = {}; // questionId -> selectedIndex (locked)
+
+function handleOptionSelect(questionId, optionIndex) {
+  if (submittedAnswers[questionId] !== undefined) return; // already submitted
+
+  userAnswers[questionId] = optionIndex;
+
+  const optionsContainer = document.getElementById(`options-${questionId}`);
+  if (!optionsContainer) return;
+
+  // Clear previous selection
+  const items = optionsContainer.querySelectorAll(
+    '.option-item, .options-as-table tbody tr'
+  );
+  items.forEach(item => item.classList.remove('selected'));
+
+  // Select new
+  const target = optionsContainer.querySelector(
+    `[data-option-index="${optionIndex}"]`
+  );
+  if (target) target.classList.add('selected');
+
+  // Enable submit
+  const submitBtn = document.getElementById(`submit-${questionId}`);
+  if (submitBtn) submitBtn.disabled = false;
+}
+
+function handleSubmit(questionId) {
+  if (userAnswers[questionId] === undefined) return;
+  if (submittedAnswers[questionId] !== undefined) return;
+
+  submittedAnswers[questionId] = userAnswers[questionId];
+
+  const q = questions.find(qq => qq.id === questionId);
+  const userAnswer = userAnswers[questionId];
+  const isCorrect = userAnswer === q.correctIndex;
+  const card = document.getElementById(`question-card-${questionId}`);
+
+  // Mark options as correct/wrong
+  const optionsContainer = document.getElementById(`options-${questionId}`);
+  const items = optionsContainer.querySelectorAll(
+    '.option-item, .options-as-table tbody tr'
+  );
+  items.forEach((item, idx) => {
+    item.classList.add('disabled');
+    item.classList.remove('selected');
+    const itemIndex = parseInt(item.dataset.optionIndex);
+    if (itemIndex === q.correctIndex) {
+      item.classList.add('correct-answer');
+    } else if (itemIndex === userAnswer) {
+      item.classList.add('wrong-answer');
+    }
+  });
+
+  // Update card border
+  if (isCorrect) {
+    card.classList.add('answered-correct');
+  } else {
+    card.classList.add('answered-wrong', 'shake');
+    setTimeout(() => card.classList.remove('shake'), 450);
+  }
+
+  // Update submit button
+  const submitBtn = document.getElementById(`submit-${questionId}`);
+  submitBtn.disabled = true;
+  submitBtn.classList.add('submitted');
+  submitBtn.innerHTML = isCorrect
+    ? `<span>Submitted ✓</span>`
+    : `<span>Submitted</span>`;
+
+  // Show reset button
+  const resetBtn = document.getElementById(`reset-${questionId}`);
+  resetBtn.style.display = 'inline-flex';
+
+  // Show feedback
+  showFeedback(q, userAnswer, isCorrect);
+
+  // Update progress
+  updateProgress();
+
+  // Check if all done
+  checkAllAnswered();
+}
+
+function handleShowAnswer(questionId) {
+  const q = questions.find(qq => qq.id === questionId);
+  if (!q) return;
+
+  const feedback = document.getElementById(`feedback-${questionId}`);
+  feedback.classList.remove('correct', 'wrong');
+  feedback.classList.add('correct');
+
+  feedback.innerHTML = `
+    <div class="feedback-header">
+      <div class="feedback-icon-circle correct">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <div class="feedback-title correct">Suggested answer</div>
+    </div>
+    <div class="explanation-heading">Marker’s notes</div>
+    <div class="explanation-body">${q.modelAnswer}</div>
+  `;
+
+  const submitBtn = document.getElementById(`submit-${questionId}`);
+  submitBtn.disabled = true;
+  submitBtn.classList.add('submitted');
+  submitBtn.innerHTML = `<span>Answer shown ✓</span>`;
+
+  const resetBtn = document.getElementById(`reset-${questionId}`);
+  if (resetBtn) resetBtn.style.display = 'inline-flex';
+
+  const card = document.getElementById(`question-card-${questionId}`);
+  if (card) card.querySelectorAll('.response-input').forEach(t => t.disabled = true);
+
+  requestAnimationFrame(() => {
+    feedback.classList.add('visible');
+    setTimeout(() => {
+      feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+  });
+}
+
+function handleReset(questionId) {
+  const q = questions.find(qq => qq.id === questionId);
+  const card = document.getElementById(`question-card-${questionId}`);
+  card.classList.remove('answered-correct', 'answered-wrong');
+
+  const submitBtn = document.getElementById(`submit-${questionId}`);
+  submitBtn.classList.remove('submitted');
+
+  const resetBtn = document.getElementById(`reset-${questionId}`);
+  resetBtn.style.display = 'none';
+
+  const feedback = document.getElementById(`feedback-${questionId}`);
+  feedback.classList.remove('visible', 'correct', 'wrong');
+  setTimeout(() => { feedback.innerHTML = ''; }, 400);
+
+  if (q && q.openEnded) {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = `
+      <span>Show suggested answer</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+    `;
+    if (card) card.querySelectorAll('.response-input').forEach(t => t.disabled = false);
+    return;
+  }
+
+  delete userAnswers[questionId];
+  delete submittedAnswers[questionId];
+
+  const optionsContainer = document.getElementById(`options-${questionId}`);
+  if (optionsContainer) {
+    const items = optionsContainer.querySelectorAll(
+      '.option-item, .options-as-table tbody tr'
+    );
+    items.forEach(item => {
+      item.classList.remove(
+        'selected',
+        'correct-answer',
+        'wrong-answer',
+        'disabled'
+      );
+    });
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `
+    <span>Submit answer</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  `;
+
+  updateProgress();
+
+  // Hide score summary if visible
+  document.getElementById('scoreSummary').style.display = 'none';
+  document.getElementById('scoreSummary').classList.remove('visible');
+}
+
+function showFeedback(q, userAnswer, isCorrect) {
+  const feedback = document.getElementById(`feedback-${q.id}`);
+  feedback.classList.remove('correct', 'wrong');
+  feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  const correctMarker = q.options[q.correctIndex].marker;
+
+  feedback.innerHTML = `
+    <div class="feedback-header">
+      <div class="feedback-icon-circle ${isCorrect ? 'correct' : 'wrong'}">
+        ${isCorrect
+          ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+          : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`}
+      </div>
+      <div class="feedback-title ${isCorrect ? 'correct' : 'wrong'}">
+        ${isCorrect ? 'Correct!' : 'Not quite — let\u2019s look at why.'}
+      </div>
+    </div>
+    <div class="feedback-answer-line">
+      The correct answer is
+      <span class="answer-pill">${correctMarker}</span>
+    </div>
+    <div class="explanation-heading">Explanation</div>
+    <div class="explanation-body">${q.explanation}</div>
+  `;
+
+  // Defer to next frame so the height transition kicks in
+  requestAnimationFrame(() => {
+    feedback.classList.add('visible');
+    setTimeout(() => {
+      feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+  });
+}
+
+/* =========================================================================
+   SECTION 9 — PROGRESS + SCORE SUMMARY
+   ========================================================================= */
+
+function getScoredQuestions() {
+  return questions.filter(q => !q.openEnded);
+}
+
+function updateProgress() {
+  const scored = getScoredQuestions();
+  const total = scored.length;
+  const answered = scored.filter(q => submittedAnswers[q.id] !== undefined).length;
+  const pct = total === 0 ? 0 : (answered / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent =
+    `${answered} of ${total} answered`;
+}
+
+function checkAllAnswered() {
+  const scored = getScoredQuestions();
+  const answered = scored.filter(q => submittedAnswers[q.id] !== undefined).length;
+  if (answered === scored.length) {
+    showScoreSummary();
+  }
+}
+
+function showScoreSummary() {
+  const scored = getScoredQuestions();
+  let correctCount = 0;
+  scored.forEach(q => {
+    if (submittedAnswers[q.id] === q.correctIndex) correctCount++;
+  });
+
+  document.getElementById('scoreCorrect').textContent = correctCount;
+  document.getElementById('scoreSummary').style.display = 'block';
+
+  let message;
+  if (correctCount === scored.length) {
+    message = "Outstanding — full marks for Booklet A! You\u2019ve nailed every concept here.";
+  } else if (correctCount >= 8) {
+    message = "Excellent work! Just a couple to revisit — you\u2019re in great shape.";
+  } else if (correctCount >= 6) {
+    message = "Good progress. Read through the explanations on the ones you missed and try them again.";
+  } else if (correctCount >= 4) {
+    message = "You\u2019re building the foundation. Spend time on the explanations and come back stronger.";
+  } else {
+    message = "No worries — every explanation is a chance to learn. Read carefully, then reset and retry.";
+  }
+  document.getElementById('scoreMessage').textContent = message;
+
+  setTimeout(() => {
+    document.getElementById('scoreSummary').classList.add('visible');
+    document.getElementById('scoreSummary').scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }, 200);
+}
+
+document.getElementById('restartButton').addEventListener('click', () => {
+  questions.forEach(q => {
+    if (q.openEnded) {
+      const feedback = document.getElementById(`feedback-${q.id}`);
+      if (feedback && feedback.classList.contains('visible')) handleReset(q.id);
+    } else if (submittedAnswers[q.id] !== undefined) {
+      handleReset(q.id);
+    }
+  });
+  document.getElementById('scoreSummary').style.display = 'none';
+  document.getElementById('scoreSummary').classList.remove('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* =========================================================================
+   SECTION 10 — AUTH (Google sign-in for admin)
+   ========================================================================= */
+
+const authButton = document.getElementById('authButton');
+const provider = new firebase.auth.GoogleAuthProvider();
+
+authButton.addEventListener('click', () => {
+  if (currentUser) {
+    auth.signOut().then(() => {
+      showToast('Signed out.', 'success');
+    });
+  } else {
+    auth.signInWithPopup(provider).catch(err => {
+      console.error('Sign-in failed:', err);
+      showToast('Sign-in failed: ' + err.message, 'error');
+    });
+  }
+});
+
+auth.onAuthStateChanged((user) => {
+  currentUser = user;
+  isAdmin = user && user.email === ADMIN_EMAIL;
+
+  if (user) {
+    authButton.innerHTML = `
+      ${user.photoURL
+        ? `<img src="${user.photoURL}" alt="" class="user-avatar" />`
+        : ''}
+      <span class="button-text">${user.displayName || user.email.split('@')[0]}</span>
+      ${isAdmin ? '<span class="admin-badge">Admin</span>' : ''}
+    `;
+
+    if (isAdmin) {
+      showToast('Signed in as admin — you can upload diagrams.', 'success');
+    } else {
+      showToast(
+        `Signed in as ${user.email}. Only ${ADMIN_EMAIL} can upload diagrams.`,
+        'error'
+      );
+    }
+  } else {
+    authButton.innerHTML = `
+      <svg class="google-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+        <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+        <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+        <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+      </svg>
+      <span class="button-text">Sign in with Google</span>
+    `;
+  }
+});
+
+/* =========================================================================
+   SECTION 11 — TOAST NOTIFICATIONS
+   ========================================================================= */
+
+function showToast(message, type) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast' + (type ? ' ' + type : '');
+  toast.textContent = message;
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('fading');
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
+/* =========================================================================
+   SECTION 12 — PRINT BUTTON
+   ========================================================================= */
+
+document.getElementById('printButton').addEventListener('click', () => {
+  window.print();
+});
+
+/* =========================================================================
+   SECTION 13 — INIT
+   ========================================================================= */
+
+renderAllQuestions();
+loadStoredImages();
+</script>
+
+</body>
+</html>
