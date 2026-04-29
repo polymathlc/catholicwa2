@@ -634,11 +634,6 @@
     font-weight: 600;
   }
 
-  .image-uploader .upload-hint {
-    font-size: var(--font-size-xs);
-    color: var(--text-tertiary);
-  }
-
   .image-uploader.has-image {
     border-style: solid;
     border-color: var(--border-subtle);
@@ -2427,7 +2422,7 @@ function renderDiagramSection(diagramKey, label) {
 
   const labelEl = document.createElement('div');
   labelEl.className = 'diagram-label';
-  labelEl.innerHTML = `<span class="label-tag">Diagram</span> ${label}`;
+  labelEl.innerHTML = `<span class="label-tag">Diagram</span>`;
   section.appendChild(labelEl);
 
   const uploader = renderImageUploader(diagramKey, label);
@@ -2455,7 +2450,6 @@ function renderImageUploader(diagramKey, label) {
       <line x1="12" y1="3" x2="12" y2="15"></line>
     </svg>
     <div class="upload-text">Drop an image, click to browse, or paste (Ctrl+V)</div>
-    <div class="upload-hint">${label}</div>
   `;
   wrapper.appendChild(emptyState);
 
@@ -2682,7 +2676,6 @@ function replaceImage(diagramKey) {
       <line x1="12" y1="3" x2="12" y2="15"></line>
     </svg>
     <div class="upload-text">Drop an image, click to browse, or paste (Ctrl+V)</div>
-    <div class="upload-hint">${label}</div>
   `;
   uploader.appendChild(emptyState);
 
